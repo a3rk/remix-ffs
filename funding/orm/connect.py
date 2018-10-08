@@ -14,5 +14,5 @@ def create_session():
                                           autoflush=False,
                                           bind=engine))
     base.query = session.query_property()
-    base.metadata.create_all(bind=engine)
+    #base.metadata.create_all(bind=engine)
     return session
