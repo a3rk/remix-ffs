@@ -7,7 +7,7 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 SECRET = os.environ['SECRET']
 DEBUG = True
 
-COINNAME =  os.environ["COINNAME"]
+COINTICKER =  os.environ["COINTICKER"]
 COINCODE = os.environ["COINCODE"]
 PSQL_USER = os.environ["PSQL_USER_FFS"]
 PSQL_PASS = os.environ["PSQL_PASS_FFS"]

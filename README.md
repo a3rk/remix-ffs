@@ -19,7 +19,7 @@ The AEON Funding System was written entirely in Python. It was originally develo
 
 ## Installation (locally)
 
-set environment variables for: COINCODE, PSQL_USER_FFS,PSQL_PASS_FFS, DB_FFS
+set environment variables for: COINCODE, COINNAME, PSQL_USER_FFS,PSQL_PASS_FFS, DB_FFS
 
 Better instructions to follow in the future.
 
@@ -27,20 +27,19 @@ Better instructions to follow in the future.
 
 ```sudo apt install python-virtualenv python3 redis-server postgresql-server-dev-* postgresql postgresql-client python-pip virtualenv git```
 
-Create a Postgres user/database for this project
-
+1. Create a Postgres user/database for this project that matches the DB_FFS environment var
+2.
 ```
 git clone https://github.com/camthegeek/aeon-funding-system.git
 cd aeon-funding-system
 virtualenv -p /usr/bin/python3 <venv>
 source <venv>/bin/activate
 pip install -r requirements.txt
-cp settings.py_example settings.py
-- change settings accordingly
+python migrate.py db migrate
 python run_dev.py
 ```
-1. register as a new user on the site
-2. flip the admin bit on for the user using psql or pgadmin
+3. register as a new user on the site
+4. flip the admin bit on for the user using psql or pgadmin
 
 ### to-do
 
@@ -49,4 +48,4 @@ python run_dev.py
 - [] Define one exchange API URL
 - [] Automated setup
 - [] User follow proposals
-- [] flask migrate for db migrations
+- [x] flask migrate for db migrations

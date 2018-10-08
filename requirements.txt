@@ -4,6 +4,7 @@ flask-yoloapi==0.1.5
 flask_session
 flask-login
 flask-bcrypt
+flask-migrate
 redis
 gunicorn
 psycopg2
