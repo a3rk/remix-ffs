@@ -22,7 +22,7 @@ def api_proposals_get(status, cat, limit, offset):
     return [p.json for p in proposals]
 
 
-@app.route('/api/1/convert/' + settings.COINNAME + '-usd')
+@app.route('/api/1/convert/' + settings.COINTICKER + '-usd')
 @endpoint.api(
     parameter('amount', type=int, location='args', required=True)
 )
