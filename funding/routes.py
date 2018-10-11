@@ -20,7 +20,9 @@ def about():
 
 @app.route('/api')
 def api():
-    return make_response(render_template('api.html'))
+    return make_response(render_template('api.html',
+                                         name=settings.COINCODE,
+                                         server=settings.SERVER_DNS_DOMAIN))
 
 
 @app.route('/proposal/add/disclaimer')
