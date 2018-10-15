@@ -16,6 +16,7 @@ def global_variables():
                 coinpng=settings.COINPNG,
                 irc = settings.IRC_CHANNEL,
                 discord_url = settings.DISCORD_URL,
+                block_ex_server=settings.BLOCK_EX_SERVER,
                 email = settings.EMAIL,
                 server=settings.SERVER_DNS_DOMAIN)
 @app.route('/')

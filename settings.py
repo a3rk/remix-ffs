@@ -16,6 +16,7 @@ PSQL_DB = os.environ['DB_FFS']
 DISCORD_URL=os.environ["DISCORD_URL"]
 IRC_CHANNEL = os.environ["IRC"]
 EMAIL = os.environ["EMAIL"]
+BLOCK_EX_SERVER = os.environ["BLOCK_EX_SERVER"]
 
 SQLALCHEMY_DATABASE_URI = os.environ.get('SQLALCHEMY_DATABASE_URI', 'postgresql://{user}:{pw}@localhost/{db}').format(user=PSQL_USER, pw=PSQL_PASS, db=PSQL_DB)
 
