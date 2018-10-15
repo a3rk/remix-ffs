@@ -14,6 +14,9 @@ from funding.orm.orm import Proposal, User, Comment
 def global_variables():
     return dict(name=settings.COINCODE,
                 coinpng=settings.COINPNG,
+                irc = settings.IRC_CHANNEL,
+                discord_url = settings.DISCORD_URL,
+                email = settings.EMAIL,
                 server=settings.SERVER_DNS_DOMAIN)
 @app.route('/')
 def index():
