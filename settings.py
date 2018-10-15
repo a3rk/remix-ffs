@@ -36,8 +36,14 @@ if not BIND_PORT:
 
 HOSTNAME = os.environ.get("{coincode}_HOSTNAME", socket.gethostname()).format(coincode=COINCODE)
 
-# If using a local RPC, no need for --rpc-login credentials unless you're binding wallet-rpc to 0.0.0.0. If you are, you're bad.
-# elif, remote wallet-rpc, enable --rpc-login and enter credentials below.
+
+
+# If using a local RPC, no need for --rpc-login credentials,
+# 	unless you're binding wallet-rpc to 0.0.0.0. 
+# 	
+# If you are, you're bad.
+# 	elif, remote wallet-rpc, enable --rpc-login,
+# 		 and enter credentials below.
 RPC_HOST = '127.0.0.1'
 RPC_PORT = os.environ.get("RPC_PORT", '11182')
 RPC_LOCATION = "http://{host}:{rpc_port}/json_rpc".format(host=RPC_HOST, rpc_port=RPC_PORT)
@@ -51,6 +57,8 @@ FUNDING_CATEGORIES = [
     'misc',
     'design'
 ]
+
+
 
 FUNDING_STATUSES = collections.OrderedDict()
 FUNDING_STATUSES[0] = 'disabled'
