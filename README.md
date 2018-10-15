@@ -1,10 +1,10 @@
-# AEON Funding System 
+# Funding System 
 
 ## Description
 
-Do more with your cryptocurrency by getting the community involved. The goal of the AEON Funding System is to enable community members to complete projects and be paid for the projects by other community members. 
+Do more with your cryptocurrency by getting the community involved. The goal of the Funding System is to enable community members to complete projects and be paid for the projects by other community members. 
 
-The AEON Funding System was written entirely in Python. It was originally developed by dsc_ (skftn) for the Wownero currency but later updated by various community members to be accepted for AEON and other cryptonote currencies. 
+The Funding System was written entirely in Python. It was originally developed by dsc_ (skftn) for the Wownero currency but later updated by various community members to be accepted for cryptonote currencies. 
 
 ## Features
 - Simplistic user system
@@ -19,7 +19,19 @@ The AEON Funding System was written entirely in Python. It was originally develo
 
 ## Installation (locally)
 
-set environment variables for: COINCODE, COINNAME, PSQL_USER_FFS,PSQL_PASS_FFS, DB_FFS
+set environment variables for: 
+BLOCK_EX_SERVER
+COIN_PNG,
+COINCODE, 
+COINTICKER, 
+DB_FFS,
+DISCORD_URL,
+IRC,
+PSQL_USER_FFS,
+PSQL_PASS_FFS, 
+RPC_PORT
+SERVER_DNS,
+SECRET
 
 Better instructions to follow in the future.
 
@@ -30,7 +42,7 @@ Better instructions to follow in the future.
 1. Create a Postgres user/database for this project that matches the DB_FFS environment var
 2.
 ```
-git clone https://github.com/camthegeek/aeon-funding-system.git
+git clone 
 cd aeon-funding-system
 virtualenv -p /usr/bin/python3 <venv>
 source <venv>/bin/activate
