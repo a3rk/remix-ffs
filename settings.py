@@ -6,7 +6,7 @@ import os
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 SECRET = os.environ['SECRET']
 DEBUG = True
-
+COINPNG = os.environ["COINPNG"]
 SERVER_DNS_DOMAIN = os.environ["SERVERDNS"]
 COINTICKER =  os.environ["COINTICKER"]
 COINCODE = os.environ["COINCODE"]

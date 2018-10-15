@@ -9,8 +9,12 @@ import settings
 from funding.factory import app, db_session
 from funding.orm.orm import Proposal, User, Comment
 
-render_template_wdefault=partial(render_template,name=settings.COINCODE,server=settings.SERVER_DNS_DOMAIN)
 
+@app.context_processor
+def global_variables():
+    return dict(name=settings.COINCODE,
+                coinpng=settings.COINPNG,
+                server=settings.SERVER_DNS_DOMAIN)
 @app.route('/')
 def index():
     return redirect(url_for('proposals'))
@@ -18,17 +22,17 @@ def index():
 
 @app.route('/about')
 def about():
-    return make_response(render_template_wdefault('about.html'))
+    return make_response(render_template('about.html'))
 
 
 @app.route('/api')
 def api():
-    return make_response(render_template_wdefault('api.html'))
+    return make_response(render_template('api.html'))
 
 
 @app.route('/proposal/add/disclaimer')
 def proposal_add_disclaimer():
-    return make_response(render_template_wdefault('proposal/disclaimer.html'))
+    return make_response(render_template('proposal/disclaimer.html'))
 
 
 @app.route('/proposal/add')
@@ -36,7 +40,7 @@ def proposal_add():
     if current_user.is_anonymous:
         return make_response(redirect(url_for('login')))
     default_content = settings.PROPOSAL_CONTENT_DEFAULT
-    return make_response(render_template_wdefault('proposal/edit.html',
+    return make_response(render_template('proposal/edit.html',
                                          default_content=default_content ))
 
 
@@ -75,7 +79,7 @@ def propsal_comment_reply(cid, pid):
     if c.proposal_id != p.id:
         return redirect(url_for('proposals'))
 
-    return make_response(render_template_wdefault('comment_reply.html', c=c, pid=pid, cid=cid))
+    return make_response(render_template('comment_reply.html', c=c, pid=pid, cid=cid))
 
 
 @app.route('/proposal/<int:pid>')
@@ -84,7 +88,7 @@ def proposal(pid):
     p.get_comments()
     if not p:
         return make_response(redirect(url_for('proposals')))
-    return make_response(render_template_wdefault(('proposal/proposal.html'), proposal=p))
+    return make_response(render_template(('proposal/proposal.html'), proposal=p))
 
 
 @app.route('/api/proposal/add', methods=['POST'])
@@ -195,7 +199,7 @@ def proposal_edit(pid):
     if not p:
         return make_response(redirect(url_for('proposals')))
 
-    return make_response(render_template_wdefault(('proposal/edit.html'), proposal=p))
+    return make_response(render_template(('proposal/edit.html'), proposal=p))
 
 
 @app.route('/search')
@@ -204,9 +208,9 @@ def proposal_edit(pid):
 )
 def search(key=None):
     if not key:
-        return make_response(render_template_wdefault('search.html', results=None, key='Empty!'))
+        return make_response(render_template('search.html', results=None, key='Empty!'))
     results = Proposal.search(key=key)
-    return make_response(render_template_wdefault('search.html', results=results, key=key))
+    return make_response(render_template('search.html', results=results, key=key))
 
 
 @app.route('/user/<path:name>')
@@ -214,7 +218,7 @@ def user(name):
     q = db_session.query(User)
     q = q.filter(User.username == name)
     user = q.first()
-    return render_template_wdefault('user.html', user=user)
+    return render_template('user.html', user=user)
 
 @app.route('/proposals')
 @endpoint.api(
@@ -230,7 +234,7 @@ def proposals(status, page, cat):
             'funding': Proposal.find_by_args(status=2, limit=10),
             'wip': Proposal.find_by_args(status=3, limit=10),
             'completed': Proposal.find_by_args(status=4, limit=10)}
-        return make_response(render_template_wdefault('proposal/overview.html', proposals=proposals))
+        return make_response(render_template('proposal/overview.html', proposals=proposals))
 
     try:
         if not isinstance(status, int):
@@ -239,7 +243,7 @@ def proposals(status, page, cat):
     except:
         return make_response(redirect(url_for('proposals')))
 
-    return make_response(render_template_wdefault('proposal/proposals.html',
+    return make_response(render_template('proposal/proposals.html',
                                          proposals=proposals, status=status, cat=cat))
 
 @app.route('/register', methods=['GET', 'POST'])
@@ -248,7 +252,7 @@ def register():
         return 'user reg disabled ;/'
 
     if request.method == 'GET':
-        return make_response(render_template_wdefault('register.html'))
+        return make_response(render_template('register.html'))
 
     username = request.form['username']
     password = request.form['password']
@@ -260,7 +264,7 @@ def register():
         return redirect(url_for('login'))
     except Exception as ex:
         flash('Could not register user. Probably a duplicate username or email that already exists.', 'error')
-        return make_response(render_template_wdefault('register.html'))
+        return make_response(render_template('register.html'))
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -270,13 +274,13 @@ def register():
 )
 def login(username, password):
     if request.method == 'GET':
-        return make_response(render_template_wdefault('login.html'))
+        return make_response(render_template('login.html'))
 
     from funding.factory import bcrypt
     user = User.query.filter_by(username=username).first()
     if user is None or not bcrypt.check_password_hash(user.password, password):
         flash('Username or Password is invalid', 'error')
-        return make_response(render_template_wdefault('login.html'))
+        return make_response(render_template('login.html'))
 
     login_user(user)
     response = redirect(request.args.get('next') or url_for('index'))
