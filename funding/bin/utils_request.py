@@ -36,7 +36,7 @@ def after_request(res):
     return res
 
 @app.teardown_appcontext
-def shutdown_session(**kwargs):
+def shutdown_session(*args,**kwargs):
     db_session.remove()
 
 @app.errorhandler(404)

@@ -4,19 +4,19 @@ import collections
 import os
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-SECRET = os.environ['SECRET']
+SECRET =""
 DEBUG = True
-COINPNG = os.environ["COINPNG"]
-SERVER_DNS_DOMAIN = os.environ["SERVERDNS"]
-COINTICKER =  os.environ["COINTICKER"]
-COINCODE = os.environ["COINCODE"]
-PSQL_USER = os.environ["PSQL_USER_FFS"]
-PSQL_PASS = os.environ["PSQL_PASS_FFS"]
-PSQL_DB = os.environ['DB_FFS']
-DISCORD_URL=os.environ["DISCORD_URL"]
-IRC_CHANNEL = os.environ["IRC"]
-EMAIL = os.environ["EMAIL"]
-BLOCK_EX_SERVER = os.environ["BLOCK_EX_SERVER"]
+COINPNG = ""
+SERVER_DNS_DOMAIN = ""
+COINTICKER =  ""
+COINCODE = ""
+PSQL_USER = ""
+PSQL_PASS =""
+PSQL_DB = ""
+DISCORD_URL=""
+IRC_CHANNEL = ""
+EMAIL = ""
+BLOCK_EX_SERVER = ""
 
 SQLALCHEMY_DATABASE_URI = os.environ.get('SQLALCHEMY_DATABASE_URI', 'postgresql://{user}:{pw}@localhost/{db}').format(user=PSQL_USER, pw=PSQL_PASS, db=PSQL_DB)
 
