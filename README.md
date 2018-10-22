@@ -39,7 +39,7 @@ Better instructions to follow in the future.
 
 ```sudo apt install python-virtualenv python3 redis-server postgresql-server-dev-* postgresql postgresql-client python-pip virtualenv git```
 
-1. Create a Postgres user/database for this project that matches the DB_FFS environment var
+1. Create a Postgres user/database for this project
 2.
 ```
 git clone 
@@ -50,6 +50,7 @@ pip install -r requirements.txt
 python migrate.py db migrate
 python run_dev.py
 ```
+3. move settings_org.py to settings.py and set all variables
 3. register as a new user on the site
 4. flip the admin bit on for the user using psql or pgadmin
 
