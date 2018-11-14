@@ -14,6 +14,7 @@ from funding.orm.orm import Proposal, User, Comment
 def global_variables():
     return dict(name=settings.COINCODE,
                 coinpng=settings.COINPNG,
+                coin_favicon=settings.COINFAVICON,
                 irc = settings.IRC_CHANNEL,
                 discord_url = settings.DISCORD_URL,
                 block_ex_server=settings.BLOCK_EX_SERVER,
@@ -170,8 +171,8 @@ def proposal_api_add(title, content, pid, funds_target, addr_receiving, category
             return make_response(jsonify('letters detected'),500)
         if funds_target < 1:
                 return make_response(jsonify('Proposal asking less than 1 error :)'), 500)
-        if len(addr_receiving) != 97:
-            return make_response(jsonify('Faulty address, should be of length 72'), 500)
+        if len(addr_receiving) != settings.ADDRESS_LENGTH:
+            return make_response(jsonify('Bad address length'), 500)
 
         p = Proposal(headline=title, content=content, category='misc', user=current_user)
         proposalID = current_user

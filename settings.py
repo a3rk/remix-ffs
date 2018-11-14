@@ -4,19 +4,22 @@ import collections
 import os
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-SECRET =""
-DEBUG = True
-COINPNG = ""
-SERVER_DNS_DOMAIN = ""
-COINTICKER =  ""
-COINCODE = ""
-PSQL_USER = ""
-PSQL_PASS =""
-PSQL_DB = ""
-DISCORD_URL=""
-IRC_CHANNEL = ""
-EMAIL = ""
-BLOCK_EX_SERVER = ""
+SECRET = os.environ.get('SECRET',"xxxxxxxxxxxxxxxx")
+DEBUG = True if os.environ.get('DEBUG','True').lower() == 'true' else False
+COINPNG = os.environ.get("COINPNG","remix.png")
+COINFAVICON = os.environ.get("COINFAVICON","remix.ico")
+ADDRESS_PREFIX=os.environ.get("COINFAVICON","a3rk")
+ADDRESS_LENGTH=int(os.environ.get("ADDRESS_LENGTH","99"))
+SERVER_DNS_DOMAIN =os.environ.get("SERVER_DNS_DOMAIN","remixffs.io")
+COINTICKER =  os.environ.get("COINTICKER","RMX")
+COINCODE = os.environ.get("COINTICKER","Remix")
+PSQL_USER =os.environ.get("PSQL_USER","postgres")
+PSQL_PASS =os.environ.get("PSQL_PASS","xxxxx")
+PSQL_DB = os.environ.get("PSQL_DB","remix_ffs")
+DISCORD_URL=os.environ.get("DISCORD_URL","https://discordapp.com/somelink")
+IRC_CHANNEL =os.environ.get("IRC_CHANNEL","#remix")
+EMAIL = os.environ.get("EMAIL","guzzijones12@gmail.com")
+BLOCK_EX_SERVER = os.environ.get("BLOCK_EX_SERVER","remixblock.io")
 
 SQLALCHEMY_DATABASE_URI = os.environ.get('SQLALCHEMY_DATABASE_URI', 'postgresql://{user}:{pw}@localhost/{db}').format(user=PSQL_USER, pw=PSQL_PASS, db=PSQL_DB)
 
@@ -39,10 +42,10 @@ HOSTNAME = os.environ.get("{coincode}_HOSTNAME", socket.gethostname()).format(co
 # If using a local RPC, no need for --rpc-login credentials unless you're binding wallet-rpc to 0.0.0.0. If you are, you're bad.
 # elif, remote wallet-rpc, enable --rpc-login and enter credentials below.
 RPC_HOST = '127.0.0.1'
-RPC_PORT = os.environ.get("RPC_PORT", '11182')
+RPC_PORT = os.environ.get("RPC_PORT", '12777')
 RPC_LOCATION = "http://{host}:{rpc_port}/json_rpc".format(host=RPC_HOST, rpc_port=RPC_PORT)
-RPC_USERNAME = os.environ.get("RPC_USERNAME","")
-RPC_PASSWORD = os.environ.get("RPC_USERNAME","")
+RPC_USERNAME = os.environ.get("RPC_USERNAME","remix")
+RPC_PASSWORD = os.environ.get("RPC_PASSWORD","xxxx")
 
 FUNDING_CATEGORIES = [
     'wallets',
